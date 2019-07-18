@@ -1,7 +1,10 @@
-from pyspark.sql import sparksession
+import pyspark
+from pyspark import SparkContext
 
-spark = sparksession.builder.appName("Testing").getOrCreate()
+sc = SparkContext()
 
-df = spark.read.format("csv").load("gs://sparknarendra/offense_codes.csv")
+
+
+df = sc.textFile("gs://sparknarendra/offense_codes.csv")
 
 print("line count is %s",df.count())
