@@ -1,12 +1,7 @@
-import logging
-import os
-import cloudstorage as gcs
-import webapp2
+from pyspark.sql import sparksession
 
-f = gcs.open("gs://sparknarendra/crime.csv","r+")
-count = 0
+spark = sparksession.builder.appName("Testing").getOrCreate()
 
-for line in f.readlines():
-  count += 1
-  
-print("line count is %s",count)
+df = spark.read.format("csv").load("gs://sparknarendra/offense_codes.csv")
+
+print("line count is %s",df.count())
