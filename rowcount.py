@@ -5,8 +5,8 @@ sc = SparkContext()
 
 
 
-df = sc.textFile("gs://sparknarendra/offense_codes.csv")
+df = sc.textFile("gs://sparknarendra/crime.csv")
 
 print("line count is %s"%df.count())
 print("Some Sample data is as below")
-print(df.first())
+print(df.take(10))
